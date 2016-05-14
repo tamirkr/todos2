@@ -1,0 +1,18 @@
+html,body{
+    padding-top: 30px;
+}
+a{
+    cursor: pointer;
+}
+ul.todos li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+ul.todos li:last-child {
+    border-bottom: none;
+}
+
+ul.todos li.done {
+    text-decoration: line-through;
+}

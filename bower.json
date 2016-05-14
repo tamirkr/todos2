@@ -1,0 +1,21 @@
+{
+  "name": "todos2",
+  "description": "ngstorage todos app",
+  "main": "app.js",
+  "authors": [
+    "tamir kratz"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/tamirkr",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "ngstorage": "^0.3.10"
+  }
+}

@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">{{$ctrl.title}}</div>
+                <div class="panel-body">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Enter a todo..." ng-model="$ctrl.task">
+                          <span class="input-group-btn">
+                              <button class="btn btn-success" type="button" ng-click="$ctrl.add()">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                              </button>
+                          </span>
+                    </div>
+                    {{$ctrl.task}}
+                    <p><a ng-click="$ctrl.markAll()">Check All</a></p>
+                    <p> {{$ctrl.complete}} - completed</p>
+                    <p ng-bind="$ctrl.total()"></p>
+                    <ul class="list-unstyled todos">
+                        <li ng-repeat="todo in $ctrl.todos" ng-class="{done: todo.done}">
+                            <input type="checkbox" ng-click="$ctrl.markAsDone(todo)" ng-checked="todo.done">
+                            <h4>{{todo.name}}</h4>
+                            <button class="btn btn-danger btn-xs" ng-click="$ctrl.remove($index)">
+                                <span class="glyphicon glyphicon-remove-sign"></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
