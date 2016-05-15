@@ -17,12 +17,25 @@
                     <p> {{$ctrl.complete}} - completed</p>
                     <p ng-bind="$ctrl.total()"></p>
                     <ul class="list-unstyled todos">
-                        <li ng-repeat="todo in $ctrl.todos" ng-class="{done: todo.done}">
-                            <input type="checkbox" ng-click="$ctrl.markAsDone(todo)" ng-checked="todo.done">
-                            <h4>{{todo.name}}</h4>
-                            <button class="btn btn-danger btn-xs" ng-click="$ctrl.remove($index)">
-                                <span class="glyphicon glyphicon-remove-sign"></span>
-                            </button>
+                        <li ng-repeat="todo in $ctrl.todos" ng-class="{done: todo.done}" class="clearfix">
+                            <div class="col-md-1">
+                                <h4><input type="checkbox" ng-click="$ctrl.markAsDone(todo)" ng-checked="todo.done"></h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div ng-show="!todo.edit" ng-dblclick="todo.edit=!todo.edit; $ctrl.saveText($index, todo.name)" ><h4 class="text">{{todo.name}}</h4></div>
+                                <div ng-show="todo.edit"><input type="text" class="form-control" ng-model="todo.name" ></div>
+                            </div>
+                            <div class="col-md-3">
+                                <button ng-show="todo.edit" class="btn btn-info btn-xs" ng-click="$ctrl.reset($index)">
+                                    reset
+                                </button>
+                                <button ng-show="todo.edit" class="btn btn-primary btn-xs" ng-click="$ctrl.updateToDo($index, todo)">
+                                    save
+                                </button>
+                                <button class="btn btn-danger btn-xs" ng-click="$ctrl.remove($index)">
+                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                </button>
+                            </div>
                         </li>
                     </ul>
                 </div>

@@ -4,6 +4,14 @@ html,body{
 a{
     cursor: pointer;
 }
+
+ul.todos li.done h4.text {
+    text-decoration: line-through;
+}
+h4{
+    cursor: pointer;
+}
+
 ul.todos li {
     padding: 10px;
     border-bottom: 1px solid #eee;

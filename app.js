@@ -12,6 +12,7 @@ app.component('myTodos',{
         ctrl.title = 'My Todos';
         ctrl.task = '';
 
+        var todoSave;
         ctrl.$onInit = function () {
             ctrl.todos = storageService.get();
         }
@@ -34,6 +35,18 @@ app.component('myTodos',{
             ctrl.complete = storageService.countComplete();
         }
 
+        ctrl.saveText = function(index, todo) {
+            // for(var i = 0; i < ctrl.todos.length; i++) {
+            //     todoSave.push(ctrl.todos[i]);
+            // }
+            // console.log(todoSave);
+            todoSave = todo.name;
+        }
+
+        ctrl.reset = function(index) {
+            ctrl.todos[index].name = todoSave;
+            todoSave = '';
+        }
 
         
         ctrl.markAsDone = function (todo) {
@@ -51,7 +64,10 @@ app.component('myTodos',{
             ctrl.complete = storageService.countComplete();
         }
 
-
+        ctrl.updateToDo = function(index, todo) {
+            storageService.update(todo, index);
+            todo.edit = false;
+        }
 
     }
 });
@@ -63,7 +79,7 @@ storageService.$inject = ['$localStorage'];
 function storageService($localStorage) {
     var markall = false;
     $localStorage = $localStorage.$default({
-        todos: {}
+        todos: []
     });
 
     var _get = function () {
@@ -76,6 +92,10 @@ function storageService($localStorage) {
 
     var _add = function (todo) {
         $localStorage.todos.unshift(todo);
+    }
+
+    var _update = function (todo, index) {
+        $localStorage.todos[index] = todo;
     }
 
     var _markAll = function () {
@@ -105,7 +125,8 @@ function storageService($localStorage) {
         add:_add,
         remove:_remove,
         countComplete : _countComplete,
-        markAll:_markAll
+        markAll:_markAll,
+        update : _update
     };
 }
 
